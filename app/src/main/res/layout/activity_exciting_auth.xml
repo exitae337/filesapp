@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".excitingconnection.ExcitingAuthActivity"
+    android:orientation="vertical"
+    android:background="@color/main"
+    android:padding="@dimen/_16sdp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/excitingConnection_button_KS_backOnMain"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:background="@drawable/banner_background"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/newConnection_tv_KS_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specify the connection key"
+        android:textAlignment="center"
+        android:textColor="@color/main_banner"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+
+    <EditText
+        android:id="@+id/excitingConnection_et_KS_key"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/edittext_password"
+        android:layout_marginStart="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_38sdp"
+        android:hint="Key"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/hint"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newConnection_tv_KS_title"
+        android:layout_marginTop="@dimen/_40sdp"/>
+
+
+    <Button
+        android:id="@+id/newConnection_button_KS_makeConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/mainAccent"
+        android:text="Let's connect!"
+        android:textColor="@color/main_banner"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/excitingConnection_et_KS_key" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

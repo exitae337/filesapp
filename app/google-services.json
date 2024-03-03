@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "999100978802",
+    "project_id": "filesappnishida",
+    "storage_bucket": "filesappnishida.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999100978802:android:da3d23b86bac1e1fd714eb",
+        "android_client_info": {
+          "package_name": "com.example.filesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEQ-2SQvVUXYrrwM1xUW0qOoL23UIrbKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
