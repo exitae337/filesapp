@@ -22,6 +22,8 @@ class NewConnectionActivity : AppCompatActivity() {
         binding = ActivityNewConnectionBinding.inflate(layoutInflater);
         setContentView(binding.root);
 
+        binding.existConnectionTvKSKeyPass.text = intent.getStringExtra("key")
+
     }
 
 }

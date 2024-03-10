@@ -1,6 +1,7 @@
 package com.example.filesapp.newconnection
 
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
@@ -9,19 +10,15 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.getSystemService
-import androidx.lifecycle.lifecycleScope
 import com.example.filesapp.MainActivity
 import com.example.filesapp.databinding.ActivityKeySplashBinding
 import com.example.filesapp.connection_data.Connection
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.launch
-import java.lang.ref.PhantomReference
-import java.util.Formatter
 import kotlin.random.Random
 
 
+@SuppressLint("CustomSplashScreen")
 class KeySplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityKeySplashBinding
@@ -64,7 +61,8 @@ class KeySplashActivity : AppCompatActivity() {
 
             if (yourIp != null) {
                 saveData(keyPas, yourIp)
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, NewConnectionActivity::class.java)
+                intent.putExtra("key", keyPas)
                 startActivity(intent)
             }
 

@@ -47,6 +47,7 @@
         android:inputType="text"
         android:textAlignment="center"
         android:textColorHint="@color/hint"
+        android:textColor="@color/main_banner"
         android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

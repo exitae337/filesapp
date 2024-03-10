@@ -9,12 +9,28 @@
     android:orientation="vertical"
     android:padding="@dimen/_16sdp">
 
+    <TextView
+        android:id="@+id/upload_tv_showIp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to show the ip"
+        android:textAlignment="center"
+        android:textColor="@color/main_banner"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
     <Button
-        android:id="@+id/upload_file"
+        android:id="@+id/btn_uploadActivity_showIp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/mainAccent"
-        android:text="Upload file"
+        android:text="Show ip of the current connection"
         android:textColor="@color/main_banner"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
