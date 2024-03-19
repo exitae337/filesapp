@@ -4,6 +4,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.filesapp.FileApi.FileViewModel
 import com.example.filesapp.R
 import com.example.filesapp.databinding.ActivityUploadFileBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -21,6 +23,7 @@ class UploadFileActivity : AppCompatActivity() {
 
         // Set content View
         super.onCreate(savedInstanceState)
+
         binding = ActivityUploadFileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
