@@ -1,14 +1,16 @@
 package com.example.filesapp.FileApi
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
 
 class FileRepository {
-    suspend fun uploadFile(file: File): Boolean{
+    suspend fun uploadFile(file: File, folderName: String): Boolean{
         return try {
             FileApi.instance.uploadFile(
+                folderName,
                 file = MultipartBody.Part
                     .createFormData(
                         "file",

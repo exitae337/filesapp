@@ -53,6 +53,7 @@ class ExcitingAuthActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT).show()
                             val intent = Intent(applicationContext, UploadFileActivity::class.java)
                             intent.putExtra("ip", arrayIps[index])
+                            intent.putExtra("key", arrayKeys[index])
                             startActivity(intent)
                         } else {
                             Toast.makeText(applicationContext

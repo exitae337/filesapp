@@ -8,9 +8,9 @@ import java.io.File
 class FileViewModel(
     private val repository: FileRepository = FileRepository()
 ): ViewModel() {
-    fun uploadFile(file: File) {
+    fun uploadFile(file: File, folderName: String) {
             viewModelScope.launch {
-                repository.uploadFile(file)
+                repository.uploadFile(file, folderName)
             }
     }
 }

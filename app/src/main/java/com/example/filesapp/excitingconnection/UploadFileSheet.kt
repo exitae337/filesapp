@@ -20,11 +20,10 @@ class UploadFileSheet : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentUploadFileSheetBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val activity = requireActivity()
 
         // Upload file button
         binding.btnUploadFile.setOnClickListener {
-            attachAndUploadFile()
+            attachAndUploadAnyFile()
         }
 
         // Upload Image button
@@ -38,7 +37,7 @@ class UploadFileSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun attachAndUploadFile() {
+    private fun attachAndUploadAnyFile() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "*/*"
         intent.addCategory(Intent.CATEGORY_OPENABLE)
@@ -49,19 +48,20 @@ class UploadFileSheet : BottomSheetDialogFragment() {
             e.printStackTrace()
         }
     }
+
     @Deprecated ("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             val uri: Uri? = data.data
             val path: String = uri?.path.toString()
             val file = File(path)
-            fileApiView.uploadFile(file)
+            // fileApiView.uploadFile(file)
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUploadFileSheetBinding.inflate(inflater, container,false)
         return binding.root
     }
