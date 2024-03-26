@@ -9,7 +9,9 @@ import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.filesapp.FileApi.FileViewModel
 import com.example.filesapp.MainActivity
 import com.example.filesapp.databinding.ActivityKeySplashBinding
 import com.example.filesapp.connection_data.Connection
@@ -23,6 +25,7 @@ class KeySplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityKeySplashBinding
     private lateinit var firebaseReference: DatabaseReference
+    private val fileApiView: FileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -57,18 +60,12 @@ class KeySplashActivity : AppCompatActivity() {
         val buttonNewConnection = binding.newConnectionButtonKSMakeConnection
         buttonNewConnection.setOnClickListener {
             val keyPas = binding.newConnectionTvKSKeyPass.text.toString()
-            val yourIp = getIpAddress()
-
-            if (yourIp != null) {
-                saveData(keyPas, yourIp)
-                val intent = Intent(this, NewConnectionActivity::class.java)
-                intent.putExtra("key", keyPas)
-                startActivity(intent)
-            }
-
+            fileApiView.createFolder(keyPas)
+            saveData(keyPas, false)
+            val intent = Intent(this, NewConnectionActivity::class.java)
+            intent.putExtra("key", keyPas)
+            startActivity(intent)
         }
-
-
     }
 
     private fun generateRandomKey(): String {
@@ -85,11 +82,10 @@ class KeySplashActivity : AppCompatActivity() {
         return "#$sb"
     }
 
-    private fun saveData(keyPas: String, yourIp: String) {
-        val port: Int = 5555
-        val connectionId = firebaseReference.push().key!!
+    private fun saveData(keyPas: String, ready: Boolean) {
 
-        val connection = Connection(keyPas, yourIp, port)
+        val connectionId = firebaseReference.push().key!!
+        val connection = Connection(keyPas, true, ready)
 
         firebaseReference.child(connectionId).setValue(connection)
             .addOnCompleteListener {

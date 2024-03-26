@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 data class Connection(
     val key: String? = null,
-    val ip: String,
-    val port: Int
+    val status: Boolean,
+    val filesReady: Boolean
 )

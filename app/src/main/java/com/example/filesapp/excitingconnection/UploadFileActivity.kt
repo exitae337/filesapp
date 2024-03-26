@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.compose.runtime.key
 import androidx.fragment.app.viewModels
@@ -35,13 +36,7 @@ class UploadFileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Activity vars
-        val ip = intent.getStringExtra("ip").toString()
         key = intent.getStringExtra("key").toString()
-
-        // Button logic
-        binding.btnUploadActivityShowIp.setOnClickListener {
-            binding.uploadTvShowIp.text = ip
-        }
 
         // Open supportFragment to choose file from external storage
         binding.btnUploadActivityChooseFileToUpload.setOnClickListener {
@@ -70,9 +65,15 @@ class UploadFileActivity : AppCompatActivity() {
             val uri: Uri? = data.data
             val path: String = uri?.path.toString()
             val file = File(path)
-            fileApiView.uploadFile(file, key)
+            try {
+                fileApiView.uploadFile(file, key)
+                Toast.makeText(applicationContext, "Success!", Toast.LENGTH_SHORT)
+                    .show()
+            } catch (e: Exception) {
+                Toast.makeText(applicationContext, "Something went wrong!",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }
