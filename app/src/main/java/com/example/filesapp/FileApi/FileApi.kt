@@ -1,10 +1,7 @@
 package com.example.filesapp.FileApi
 
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.http.Body
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -15,7 +12,7 @@ interface FileApi {
     @POST("/uploads/upload-file/{folderName}")
     suspend fun uploadFile(
         @Path("folderName") folderName: String,
-        @Part("file") file: MultipartBody.Part
+        @Part file: MultipartBody.Part
     )
 
     // Create folder on server

@@ -1,5 +1,6 @@
 package com.example.filesapp.excitingconnection
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -7,14 +8,10 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.compose.runtime.key
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.filesapp.FileApi.FileViewModel
-import com.example.filesapp.R
 import com.example.filesapp.databinding.ActivityUploadFileBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.io.File
+import java.io.InputStream
 
 class UploadFileActivity : AppCompatActivity() {
 
@@ -54,26 +51,43 @@ class UploadFileActivity : AppCompatActivity() {
                 Intent.createChooser(intent, "Select a file")
                 ,100)
         }catch (e: Exception) {
-            e.printStackTrace()
+            Toast.makeText(applicationContext, "Error in Start Activity On Result!",
+                Toast.LENGTH_SHORT).show()
         }
     }
 
+    @SuppressLint("Range")
     @Deprecated ("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            val uri: Uri? = data.data
-            val path: String = uri?.path.toString()
-            val file = File(path)
-            try {
-                fileApiView.uploadFile(file, key)
-                Toast.makeText(applicationContext, "Success!", Toast.LENGTH_SHORT)
-                    .show()
-            } catch (e: Exception) {
-                Toast.makeText(applicationContext, "Something went wrong!",
+            val uri: Uri = data.data!!
+            Toast.makeText(applicationContext, uri.path, Toast.LENGTH_SHORT).show()
+            val selectedFile = File(getRealPathFromUri(uri))
+            val realPath = selectedFile.absolutePath
+            if (selectedFile.exists()) {
+                try {
+                    fileApiView.uploadFile(selectedFile, key);
+                } catch (e: Exception) {
+                    Toast.makeText(applicationContext, "Problems with upload!",
+                        Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(applicationContext, "No such file! $realPath",
                     Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun getRealPathFromUri(uri: Uri?): String {
+        if (uri == null) return ""
+        val inputStream: InputStream? = contentResolver.openInputStream(uri)
+        val file = File.createTempFile("temp_file", null, cacheDir)
+        inputStream?.use { input ->
+            file.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+        return file.absolutePath
+    }
 }
