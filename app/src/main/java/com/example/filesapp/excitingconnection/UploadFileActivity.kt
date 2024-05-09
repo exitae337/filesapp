@@ -81,7 +81,7 @@ class UploadFileActivity : AppCompatActivity() {
 
     // Create tmp file to upload on server!
     private fun getRealPathFromUri(uri: Uri?): String {
-        if (uri == null) return ""
+        if (uri == null) {return ""}
         val inputStream: InputStream? = contentResolver.openInputStream(uri)
         val file = File.createTempFile("temp_file", null, cacheDir)
         inputStream?.use { input ->

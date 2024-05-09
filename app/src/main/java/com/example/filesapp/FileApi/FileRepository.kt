@@ -1,8 +1,15 @@
 package com.example.filesapp.FileApi
 
-import android.net.http.HttpException
+import android.content.Context
+import android.os.Environment
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.IOException
@@ -34,6 +41,25 @@ class FileRepository {
         } catch (e: IOException) {
             e.printStackTrace()
             false
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    suspend fun downloadFile(folderName: String, context: Context){
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val responseBody = FileApi.instance.downloadFile(folderName)
+                val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                val resultFile = File(downloadsDir, folderName)
+                responseBody.byteStream().use { inputStream ->
+                    resultFile.outputStream().use { outputStream ->
+                        inputStream.copyTo(outputStream)
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(context, "Failure + ${e.printStackTrace()}",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.core.content.withStyledAttributes
 import com.example.filesapp.MainActivity
 import com.example.filesapp.R
 import com.example.filesapp.databinding.ActivityExcitingAuthBinding
+import com.example.filesapp.newconnection.KeySplashActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -35,9 +36,15 @@ class ExcitingAuthActivity : AppCompatActivity() {
         firebaseReference = FirebaseDatabase.getInstance().getReference()
             .child("listConnections")
 
+        binding.excitingConnectionButtonKSBackOnMain.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.newConnectionButtonKSMakeConnection.setOnClickListener {
             if(binding.excitingConnectionEtKSKey.text.isNotEmpty()) {
                 val keyStr = binding.excitingConnectionEtKSKey.text
+                // Needed for sync
                 var booleanConnection = false
                 val arrayKeys = mutableListOf<String>()
                 val arrayIps = mutableListOf<String>()
