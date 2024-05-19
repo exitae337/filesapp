@@ -6,7 +6,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -24,20 +24,14 @@ class FileViewModel(
         }
     }
 
-    fun downloadFile(folderName: String, context: Context, progressBar: ProgressBar){
-        val job = viewModelScope.launch {
-            repository.downloadFile(folderName, context)
+    fun deleteConnection(folderName: String) {
+        viewModelScope.launch {
+            repository.deleteConnection(folderName)
         }
-        job.invokeOnCompletion { throwable ->
-            if (throwable != null) {
-                progressBar.visibility = View.GONE
-                Toast.makeText(context, "Failure!",
-                    Toast.LENGTH_SHORT).show()
-            } else {
-                progressBar.visibility = View.GONE
-                Toast.makeText(context, "All good!",
-                    Toast.LENGTH_SHORT).show()
-            }
+    }
+    fun downloadFile(folderName: String, context: Context, progressBar: ProgressBar){
+        viewModelScope.launch {
+            repository.downloadFile(folderName, context, progressBar)
         }
     }
 }

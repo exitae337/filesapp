@@ -61,9 +61,10 @@ class KeySplashActivity : AppCompatActivity() {
         buttonNewConnection.setOnClickListener {
             val keyPas = binding.newConnectionTvKSKeyPass.text.toString()
             fileApiView.createFolder(keyPas)
-            saveData(keyPas, false)
+            val firebaseId = saveData(keyPas, false)
             val intent = Intent(this, NewConnectionActivity::class.java)
             intent.putExtra("key", keyPas)
+            intent.putExtra("id", firebaseId)
             startActivity(intent)
         }
     }
@@ -82,7 +83,7 @@ class KeySplashActivity : AppCompatActivity() {
         return "#$sb"
     }
 
-    private fun saveData(keyPas: String, ready: Boolean) {
+    private fun saveData(keyPas: String, ready: Boolean): String {
 
         val connectionId = firebaseReference.push().key!!
         val connection = Connection(keyPas, true, ready)
@@ -96,6 +97,8 @@ class KeySplashActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Failed! ${it.message}", Toast.LENGTH_SHORT)
                     .show()
             }
+
+        return connectionId
     }
 
     private fun ipToString(i: Int): String {

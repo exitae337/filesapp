@@ -5,6 +5,7 @@
     <color name="yellow">#ffd663</color>
     <color name="subTitle">#C6C6CD</color>
     <color name="attention">#FF5733</color>
+    <color name="moonColor">#DADADA</color>
 
     // Main colors of the App
     <color name="main">#101010</color>

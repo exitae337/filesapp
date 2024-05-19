@@ -9,6 +9,8 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
@@ -44,8 +46,18 @@ class FileRepository {
         }
     }
 
+    suspend fun deleteConnection(folderName: String): Boolean {
+        return try {
+            FileApi.instance.deleteConnection(folderName)
+            true
+        } catch (e: IOException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
     @OptIn(DelicateCoroutinesApi::class)
-    suspend fun downloadFile(folderName: String, context: Context){
+    suspend fun downloadFile(folderName: String, context: Context, progressBar: ProgressBar){
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val responseBody = FileApi.instance.downloadFile(folderName)
@@ -55,6 +67,11 @@ class FileRepository {
                     resultFile.outputStream().use { outputStream ->
                         inputStream.copyTo(outputStream)
                     }
+                }
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(context, "Completed!",
+                        Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(context, "Failure + ${e.printStackTrace()}",

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".newconnection.KeySplashActivity"
     android:orientation="vertical"
-    android:background="@color/main"
+    style="@style/ScreenBackground"
     android:padding="@dimen/_16sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -16,6 +16,7 @@
         android:background="@drawable/banner_background"
         android:padding="@dimen/_2sdp"
         android:src="@drawable/ic_back"
+        style="@style/ImageBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +24,9 @@
         android:id="@+id/newConnection_tv_KS_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your connection key is"
-        android:textColor="@color/main_banner"
+        android:text="@string/textConnectionKey"
+        style="@style/MainText"
+        android:textAlignment="center"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,6 +40,7 @@
         android:id="@+id/newConnection_tv_KS_keyPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:fontFamily="@font/latobold"
@@ -45,7 +48,7 @@
         android:layout_marginTop="@dimen/_3sdp"
 
 
-        android:text="#00000"
+        android:text="@string/defaultValue4Zero"
         android:textSize="@dimen/_18ssp"
         android:textColor="@color/attentionText"/>
 
@@ -55,9 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_70sdp"
         android:backgroundTint="@color/mainAccent"
-        android:text="Start the Connection!"
-        android:textColor="@color/main_banner"
-        android:textStyle="bold"
+        android:text="@string/startConnection"
+        style="@style/TextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

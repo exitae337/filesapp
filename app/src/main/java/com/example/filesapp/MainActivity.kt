@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.homeButtonSettings.setOnClickListener {
-            TODO() // GoTo @create settings@ layout
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

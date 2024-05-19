@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">filesApp</string>
-    <string name="title_activity_new_connection">NewConnectionActivity</string>
+    <string name="title_activity_new_connection" translatable="false">NewConnectionActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -43,6 +42,29 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    // Strings for application
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="SpecifyConnectionKey">Specify the connection key</string>
+    <string name="excitingKey">Key</string>
+    <string name="letsConnect">Let\'s connect!</string>
+    <string name="textConnectionKey">Your connection key is</string>
+    <string name="defaultValue4Zero" translatable="false">#00000</string>
+    <string name="startConnection">Start the Connection!</string>
+    <string name="homeBtnText">Home</string>
+    <string name="getFileBtnText">Get file</string>
+    <string name="getFileDesc">Start new connection with someone to get a file you need</string>
+    <string name="sendFileBtnText">Send file</string>
+    <string name="sendFileDescr">Join an existing connection to send a file</string>
+    <string name="settingsBtnTExt">Settings</string>
+    <string name="settingsDescr">If you want to change something…</string>
+    <string name="imgDescrOnHome">Mars</string>
+    <string name="showIp">Click the button under this test</string>
+    <string name="showIpBtnText">Show ip</string>
+    <string name="chooseFileBtnText">Choose file</string>
+    <string name="first_fragment_label">firstFragment</string>
+    <string name="appLanguage">Language:</string>
+    <string name="newConnectionTextMain">Your connection key is</string>
+    <string name="btnTextDownload">Download files!</string>
+    <string name="btnTextDeleteConnection">Delete Connection</string>
 </resources>

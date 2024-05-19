@@ -1,11 +1,14 @@
 package com.example.filesapp.FileApi
 
 
+import androidx.room.Delete
+import com.example.filesapp.connection_data.DeleteFolderResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -32,8 +35,14 @@ interface FileApi {
     @Streaming
     @GET("/files/download/{folderName}")
     suspend fun downloadFile(
-        @Path("folderName") folderName: String,
+        @Path("folderName") folderName: String
     ): ResponseBody
+
+    @DELETE("/deleteFolder/{folderName}")
+    suspend fun deleteConnection (
+        @Path("folderName") folderName: String
+    )
+    // :Call<DeleteFolderResponse>. Soon...
 
     companion object {
         val instance: FileApi by lazy {
