@@ -33,18 +33,30 @@
         android:fontFamily="@font/latobold"
         app:layout_constraintTop_toBottomOf="@+id/existConnection_tv_KS_title"
         android:layout_marginTop="@dimen/_3sdp"
-        android:text="#00000"
+        android:text="@string/defaultValue4Zero"
         android:textSize="@dimen/_18ssp"
         android:textColor="@color/attentionText"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_HintCircle"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/existConnection_tv_KS_keyPass" />
+
     <Button
         android:id="@+id/btn_downloadFile"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/mainAccent"
         android:text="@string/btnTextDownload"
-        style="@style/TextColor"
         android:textStyle="bold"
+        app:layout_constraintVertical_bias="0.87"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,29 +64,50 @@
 
     <Button
         android:id="@+id/btn_deleteConnection"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/mainAccent"
         android:text="@string/btnTextDeleteConnection"
-        style="@style/TextColor"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_downloadFile" />
 
     <ProgressBar
         android:id="@+id/new_connection_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_40sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_deleteConnection" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/files_ready_to_transfer"
+        style="@style/MainText"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_downloadFile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/existConnection_tv_KS_keyPass" />
 
-
+    <TextView
+        android:id="@+id/status_circle"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

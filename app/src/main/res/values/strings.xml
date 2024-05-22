@@ -67,4 +67,11 @@
     <string name="newConnectionTextMain">Your connection key is</string>
     <string name="btnTextDownload">Download files!</string>
     <string name="btnTextDeleteConnection">Delete Connection</string>
+    <string name="btnReadyText">Ready</string>
+    <string name="textCopyCode">Copy this key-code and send it to your friend!</string>
+    <string name="files_ready_to_transfer">STATUS:</string>
+    <string name="yes">"Yes"</string>
+    <string name="no">"No"</string>
+    <string name="textConfirmations">"Are you sure you want to delete the connection? The file may currently be being transferred to you!"</string>
+    <string name="text_HintCircle">When your files will be ready to be downloaded   The circle below should change color from red to green!</string>
 </resources>

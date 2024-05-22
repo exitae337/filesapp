@@ -4,6 +4,7 @@
     android:thickness="@dimen/_6sdp"
     android:useLevel="false">
     <gradient
+        android:startColor="@color/main_banner"
         android:centerColor="@color/main"
         android:endColor="@color/main"
         android:angle="315"/>

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.filesapp.FileApi.FileViewModel
 import com.example.filesapp.databinding.ActivityUploadFileBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.io.File
 import java.io.InputStream
 
@@ -17,6 +19,7 @@ class UploadFileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUploadFileBinding
     private val fileApiView: FileViewModel by viewModels()
+    private lateinit var firebaseReference: DatabaseReference
     private var key: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +37,30 @@ class UploadFileActivity : AppCompatActivity() {
 
         // Activity vars
         key = intent.getStringExtra("key").toString()
+        val id = intent.getStringExtra("id").toString()
 
         // Open supportFragment to choose file from external storage
         binding.btnUploadActivityChooseFileToUpload.setOnClickListener {
             attachAndUploadAnyFile()
+        }
+
+        // Ready to download button (update child and close @isClickable@ for button)
+        binding.btnUploadActivityReady.setOnClickListener {
+            val firebaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("listConnections").child(id)
+
+            val updates = hashMapOf<String, Any>(
+                "filesReady" to true
+            )
+            // TODO Previous activity starting!
+            firebaseReference.updateChildren(updates).addOnSuccessListener {
+                Toast.makeText(applicationContext, "Files are ready!",
+                    Toast.LENGTH_SHORT).show()
+                binding.btnUploadActivityChooseFileToUpload.isClickable = false
+            }.addOnFailureListener {
+                Toast.makeText(applicationContext, "Failure! Error: ${it.message}",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -83,6 +106,7 @@ class UploadFileActivity : AppCompatActivity() {
     private fun getRealPathFromUri(uri: Uri?): String {
         if (uri == null) {return ""}
         val inputStream: InputStream? = contentResolver.openInputStream(uri)
+        Toast.makeText(applicationContext, uri.path, Toast.LENGTH_SHORT).show()
         val file = File.createTempFile("temp_file", null, cacheDir)
         inputStream?.use { input ->
             file.outputStream().use { output ->

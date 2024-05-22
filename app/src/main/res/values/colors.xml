@@ -10,10 +10,10 @@
     // Main colors of the App
     <color name="main">#101010</color>
     <color name="mainAccent">#161616</color>
-    <color name="main_banner">#FF574C</color>
+    <color name="main_banner">#Ffffff</color>
     <color name="hint">#934A41</color>
     <color name="attentionText">#84836F</color>
-    <color name="home_icons">#FF574C</color>
+    <color name="home_icons">#ffffff</color>
     <color name="dark_side_sun">#1A1A1A</color>
 
 </resources>

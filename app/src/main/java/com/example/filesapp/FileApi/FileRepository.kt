@@ -5,16 +5,23 @@ import android.os.Environment
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.filesapp.connection_data.DeleteFolderResponse
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.internal.wait
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 import java.io.IOException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 class FileRepository {
     suspend fun uploadFile(file: File, folderName: String): Boolean{
@@ -56,6 +63,29 @@ class FileRepository {
         }
     }
 
+    fun checkServerAvailability(progressBar: ProgressBar, callback: (Boolean) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = FileApi.instance.checkConnection().execute()
+                val isServerAvailable = response.isSuccessful
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    callback(isServerAvailable)
+                }
+            } catch (e1: SocketTimeoutException) {
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    callback(false)
+                }
+            }
+            catch (e2: UnknownHostException) {
+                withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
+                    callback(false)
+                }
+            }
+        }
+    }
     @OptIn(DelicateCoroutinesApi::class)
     suspend fun downloadFile(folderName: String, context: Context, progressBar: ProgressBar){
         GlobalScope.launch(Dispatchers.IO) {
@@ -74,8 +104,10 @@ class FileRepository {
                         Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Toast.makeText(context, "Failure + ${e.printStackTrace()}",
-                    Toast.LENGTH_SHORT).show()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Failure + ${e.printStackTrace()}",
+                        Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

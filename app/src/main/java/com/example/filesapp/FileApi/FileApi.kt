@@ -42,7 +42,9 @@ interface FileApi {
     suspend fun deleteConnection (
         @Path("folderName") folderName: String
     )
-    // :Call<DeleteFolderResponse>. Soon...
+
+    @GET("/")
+    fun checkConnection():Call<Void>
 
     companion object {
         val instance: FileApi by lazy {

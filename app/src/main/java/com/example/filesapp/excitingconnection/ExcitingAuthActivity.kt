@@ -48,9 +48,11 @@ class ExcitingAuthActivity : AppCompatActivity() {
                 var booleanConnection = false
                 val arrayKeys = mutableListOf<String>()
                 val arrayIps = mutableListOf<String>()
+                val arrayIds = mutableListOf<String>()
                 firebaseReference.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for(dataSnapshot: DataSnapshot in snapshot.children) {
+                            arrayIds.add(dataSnapshot.key.toString())
                             arrayKeys.add(dataSnapshot.child("key").value.toString())
                             arrayIps.add(dataSnapshot.child("ip").value.toString())
                         }
@@ -61,6 +63,7 @@ class ExcitingAuthActivity : AppCompatActivity() {
                             val intent = Intent(applicationContext, UploadFileActivity::class.java)
                             intent.putExtra("ip", arrayIps[index])
                             intent.putExtra("key", arrayKeys[index])
+                            intent.putExtra("id", arrayIds[index])
                             startActivity(intent)
                         } else {
                             Toast.makeText(applicationContext

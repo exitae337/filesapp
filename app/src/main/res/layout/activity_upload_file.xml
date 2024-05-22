@@ -49,15 +49,30 @@
 
         <Button
             android:id="@+id/btn_uploadActivity_chooseFileToUpload"
+            style="@style/TextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mainAccent"
             android:text="@string/chooseFileBtnText"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_80sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_uploadActivity_showIp" />
+
+        <Button
+            android:id="@+id/btn_uploadActivity_ready"
             style="@style/TextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/mainAccent"
+            android:text="@string/btnReadyText"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_uploadActivity_chooseFileToUpload" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

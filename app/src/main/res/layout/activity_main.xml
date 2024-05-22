@@ -166,13 +166,11 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:contentDescription="@string/imgDescrOnHome"
-        android:src="@drawable/blood_sun"
-        style="@style/PlanetColor"
+    <ProgressBar
+        android:id="@+id/main_progress_bar"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
