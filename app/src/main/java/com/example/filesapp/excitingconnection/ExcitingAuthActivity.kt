@@ -6,18 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.content.withStyledAttributes
 import com.example.filesapp.MainActivity
-import com.example.filesapp.R
 import com.example.filesapp.databinding.ActivityExcitingAuthBinding
-import com.example.filesapp.newconnection.KeySplashActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.io.Console
-import java.lang.ref.PhantomReference
 
 class ExcitingAuthActivity : AppCompatActivity() {
 
@@ -45,7 +40,6 @@ class ExcitingAuthActivity : AppCompatActivity() {
             if(binding.excitingConnectionEtKSKey.text.isNotEmpty()) {
                 val keyStr = binding.excitingConnectionEtKSKey.text
                 // Needed for sync
-                var booleanConnection = false
                 val arrayKeys = mutableListOf<String>()
                 val arrayIps = mutableListOf<String>()
                 val arrayIds = mutableListOf<String>()

@@ -90,7 +90,12 @@ class UploadFileActivity : AppCompatActivity() {
             val realPath = selectedFile.absolutePath
             if (selectedFile.exists()) {
                 try {
-                    fileApiView.uploadFile(selectedFile, key);
+                    fileApiView.uploadFileWithProgress(selectedFile, key) { bytesWritten, contentLength ->
+                        val progress = ((bytesWritten.toDouble() / contentLength) * 100).toInt()
+                        runOnUiThread {
+                            binding.progressBarUpload.progress = progress
+                        }
+                    }
                 } catch (e: Exception) {
                     Toast.makeText(applicationContext, "Problems with upload!",
                         Toast.LENGTH_SHORT).show()

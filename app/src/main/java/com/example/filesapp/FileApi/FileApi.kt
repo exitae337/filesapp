@@ -4,6 +4,7 @@ package com.example.filesapp.FileApi
 import androidx.room.Delete
 import com.example.filesapp.connection_data.DeleteFolderResponse
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -49,7 +50,7 @@ interface FileApi {
     companion object {
         val instance: FileApi by lazy {
             Retrofit.Builder()
-                .baseUrl("http://192.168.1.102:8080/")
+                .baseUrl("http://89.179.73.25:80/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build()
                 .create(FileApi::class.java)
