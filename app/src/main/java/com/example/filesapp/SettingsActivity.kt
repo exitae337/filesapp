@@ -1,11 +1,13 @@
 package com.example.filesapp
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.filesapp.databinding.ActivitySettingsBinding
@@ -51,6 +53,36 @@ class SettingsActivity : AppCompatActivity() {
         binding.settingsButtonKSBackOnMain.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.btnSendMail.setOnClickListener {
+            if(binding.contactThemeText.text.isEmpty()) {
+                Toast.makeText(applicationContext,
+                    "Theme can't be empty!",
+                    Toast.LENGTH_SHORT).show()
+            } else if (binding.contactMailText.text.isEmpty()) {
+                Toast.makeText(applicationContext,
+                    "Text of the e-mail can't be empty!",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                val emailIntent = Intent(Intent.ACTION_SEND)
+                emailIntent.type = "plain/text"
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(
+                    "exitae337@gmail.com"
+                ))
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT,
+                    binding.contactThemeText.text.toString())
+                emailIntent.putExtra(Intent.EXTRA_TEXT,
+                    binding.contactMailText.text.toString())
+
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Send message"))
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(applicationContext,
+                        "You don't have an email client on your device",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
     }

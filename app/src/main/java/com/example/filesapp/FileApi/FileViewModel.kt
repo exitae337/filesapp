@@ -13,6 +13,8 @@ import java.io.File
 class FileViewModel(
     private val repository: FileRepository = FileRepository()
 ): ViewModel() {
+
+    // Old version of upload file function
     fun uploadFile(file: File, folderName: String) {
         viewModelScope.launch {
             repository.uploadFile(file, folderName)

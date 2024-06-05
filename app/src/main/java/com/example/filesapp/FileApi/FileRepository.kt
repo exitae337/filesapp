@@ -5,7 +5,6 @@ import android.os.Environment
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.filesapp.connection_data.DeleteFolderResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -16,18 +15,13 @@ import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.internal.wait
 import okio.buffer
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Url
 import java.io.File
 import java.io.IOException
 import java.net.SocketTimeoutException

@@ -25,7 +25,7 @@
         android:id="@+id/settings_languageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change application theme"
+        android:text="@string/changeThemeText"
         style="@style/MainText"
         android:textSize="@dimen/_18sdp"
         android:textStyle="bold"
@@ -41,6 +41,100 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="@+id/settings_languageText" />
+
+    <TextView
+        android:id="@+id/settings_contactTitle"
+        style="@style/MainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactWithDveloperTitle"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_languageText"/>
+
+    <TextView
+        android:id="@+id/settings_contactTheme"
+        style="@style/MainText"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/theme_contact"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_contactTitle" />
+
+    <EditText
+        android:id="@+id/contact_theme_text"
+        style="@style/TextColor"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:autofillHints=""
+        android:background="@drawable/edittext_password"
+        android:hint="@string/hint_contact_theme"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/subTitle"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_contactTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/settings_contactTheme"
+        app:layout_constraintTop_toTopOf="@+id/settings_contactTheme" />
+
+    <TextView
+        android:id="@+id/settings_contactText"
+        style="@style/MainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mailText_contact"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_contactTheme" />
+
+    <EditText
+        android:id="@+id/contact_mail_text"
+        style="@style/TextColor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:autofillHints=""
+        android:background="@drawable/edittext_password"
+        android:gravity="top|start"
+        android:hint="@string/text_mailContact"
+        android:inputType="textMultiLine"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:textColorHint="@color/subTitle"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_sendMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_contactText" />
+
+
+    <Button
+        android:id="@+id/btn_sendMail"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/mainAccent"
+        android:text="Send"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
 
 

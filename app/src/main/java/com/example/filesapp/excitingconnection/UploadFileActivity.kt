@@ -1,6 +1,7 @@
 package com.example.filesapp.excitingconnection
 
 import android.annotation.SuppressLint
+import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +43,7 @@ class UploadFileActivity : AppCompatActivity() {
         // Open supportFragment to choose file from external storage
         binding.btnUploadActivityChooseFileToUpload.setOnClickListener {
             attachAndUploadAnyFile()
+            clearCache()
         }
 
         // Ready to download button (update child and close @isClickable@ for button)
@@ -79,14 +81,38 @@ class UploadFileActivity : AppCompatActivity() {
         }
     }
 
+    // Clear cache directory
+    private fun clearCache() {
+        try {
+            val cacheDir = applicationContext.cacheDir
+            if(cacheDir.exists()) {
+                val files = cacheDir.listFiles()
+                if (files != null) {
+                    if (files.isNotEmpty()) {
+                        for (file in files) {
+                            file.delete()
+                        }
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(
+                applicationContext,
+                "Failed to clear cache due to: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     @SuppressLint("Range")
     @Deprecated ("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             val uri: Uri = data.data!!
-            Toast.makeText(applicationContext, uri.path, Toast.LENGTH_SHORT).show()
-            val selectedFile = File(getRealPathFromUri(uri))
+            val mimeType: String = contentResolver.getType(uri).toString()
+
+            val selectedFile = File(getRealPathFromUri(uri, mimeType))
             val realPath = selectedFile.absolutePath
             if (selectedFile.exists()) {
                 try {
@@ -107,12 +133,15 @@ class UploadFileActivity : AppCompatActivity() {
         }
     }
 
-    // Create tmp file to upload on server!
-    private fun getRealPathFromUri(uri: Uri?): String {
+    // Create tmp file to upload on server (with extension)!
+    private fun getRealPathFromUri(uri: Uri?, mimeType: String): String {
         if (uri == null) {return ""}
+        // Get Extension
+        val index = mimeType.lastIndexOf('/')
+        val extension = "." + mimeType.drop(index + 1)
+        // Save file
         val inputStream: InputStream? = contentResolver.openInputStream(uri)
-        Toast.makeText(applicationContext, uri.path, Toast.LENGTH_SHORT).show()
-        val file = File.createTempFile("temp_file", null, cacheDir)
+        val file = File.createTempFile("temp_file", extension, cacheDir)
         inputStream?.use { input ->
             file.outputStream().use { output ->
                 input.copyTo(output)

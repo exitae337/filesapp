@@ -25,6 +25,10 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <style name="ImageBackgroundForWhite">
+        <item name="android:tint">@color/black</item>
+    </style>
+
     <style name="MainText">
         <item name="android:textColor">
             @color/black

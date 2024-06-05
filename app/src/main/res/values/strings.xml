@@ -56,10 +56,10 @@
     <string name="getFileDesc">Start new connection with someone to get a file you need</string>
     <string name="sendFileBtnText">Send file</string>
     <string name="sendFileDescr">Join an existing connection to send a file</string>
-    <string name="settingsBtnTExt">Settings</string>
+    <string name="settingsBtnTExt">Settings and so on</string>
     <string name="settingsDescr">If you want to change something…</string>
     <string name="imgDescrOnHome">Mars</string>
-    <string name="showIp">Click the button under this test</string>
+    <string name="showIp">Uploading files</string>
     <string name="showIpBtnText">Show ip</string>
     <string name="chooseFileBtnText">Choose file</string>
     <string name="first_fragment_label">firstFragment</string>
@@ -68,10 +68,18 @@
     <string name="btnTextDownload">Download files!</string>
     <string name="btnTextDeleteConnection">Delete Connection</string>
     <string name="btnReadyText">Ready</string>
-    <string name="textCopyCode">Copy this key-code and send it to your friend!</string>
+    <string name="textCopyCode">Copy this key-code and send it to sender!</string>
     <string name="files_ready_to_transfer">STATUS:</string>
     <string name="yes">"Yes"</string>
     <string name="no">"No"</string>
     <string name="textConfirmations">"Are you sure you want to delete the connection? The file may currently be being transferred to you!"</string>
     <string name="text_HintCircle">When your files will be ready to be downloaded   The circle below should change color from red to green!</string>
+    <string name="upload_file">Click on the button below to select   and upload the files!</string>
+    <string name="uploadText_attention">Don\'t forget to click the \'Ready\' button \n when the files will be ready to be downloaded!</string>
+    <string name="changeThemeText">Change application theme</string>
+    <string name="contactWithDveloperTitle">Contact with me</string>
+    <string name="theme_contact">Theme:</string>
+    <string name="hint_contact_theme">Write theme</string>
+    <string name="mailText_contact">Text:</string>
+    <string name="text_mailContact">Text</string>
 </resources>

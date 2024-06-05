@@ -19,6 +19,10 @@
     <style name="ImageBackground">
         <item name="android:tint">@color/home_icons</item>
     </style>
+
+    <style name="ImageBackgroundForWhite">
+        <item name="android:tint">@color/white</item>
+    </style>
     
     <style name="TextColor">
         <item name="android:textColor">@color/main_banner</item>

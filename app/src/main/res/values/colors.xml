@@ -15,5 +15,6 @@
     <color name="attentionText">#84836F</color>
     <color name="home_icons">#ffffff</color>
     <color name="dark_side_sun">#1A1A1A</color>
+    <color name="attention_upload">#F01B45</color>
 
 </resources>

@@ -1,10 +1,7 @@
 package com.example.filesapp.FileApi
 
 
-import androidx.room.Delete
-import com.example.filesapp.connection_data.DeleteFolderResponse
 import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit

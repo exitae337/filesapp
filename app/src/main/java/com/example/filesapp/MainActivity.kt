@@ -1,6 +1,9 @@
 package com.example.filesapp
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.Global
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar = binding.mainProgressBar
 
         binding.homeButtonNewConnection.setOnClickListener {
+            // TODO check internet connection!!!
             Toast.makeText(applicationContext, "Trying to access the server...",
                 Toast.LENGTH_SHORT).show()
             progressBar.visibility = View.VISIBLE
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.homeButtonExcitingConnection.setOnClickListener {
+            // Check Internet Connection
             Toast.makeText(applicationContext, "Trying to access the server...",
                 Toast.LENGTH_SHORT).show()
             progressBar.visibility = View.VISIBLE
