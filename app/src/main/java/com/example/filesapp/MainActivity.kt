@@ -11,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.filesapp.FileApi.FileRepository
 import com.example.filesapp.FileApi.FileViewModel
 import com.example.filesapp.databinding.ActivityMainBinding
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        applySavedTheme()
 
         val progressBar = binding.mainProgressBar
 
@@ -73,6 +76,20 @@ class MainActivity : AppCompatActivity() {
         binding.homeButtonSettings.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun loadTheme(): Boolean {
+        val sharedPreferences = getSharedPreferences("theme_prefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("selected_theme", true)
+    }
+
+    private fun applySavedTheme() {
+        val selectedTheme = loadTheme()
+        if(selectedTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 }

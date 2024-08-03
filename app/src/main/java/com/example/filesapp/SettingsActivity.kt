@@ -31,22 +31,18 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // For theme change
-        // TODO Change application theme
-        switchTheme = binding.changeThemeSwitch
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = sharedPreferences.edit()
+        // Dark mode
+        binding.settingsButtonDarkMode.setOnClickListener {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            saveTheme(true)
+            Toast.makeText(applicationContext, "Night mode", Toast.LENGTH_SHORT).show()
+        }
 
-        switchTheme.isChecked = sharedPreferences.getBoolean("theme", false)
-
-        switchTheme.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                editor.putBoolean("theme", true)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                editor.putBoolean("theme", false)
-            }
-            editor.apply()
+        //Light mode
+        binding.settingsButtonLightMode.setOnClickListener {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            saveTheme(false)
+            Toast.makeText(applicationContext, "Light mode", Toast.LENGTH_SHORT).show()
         }
 
         // Button back on Main
@@ -79,11 +75,18 @@ class SettingsActivity : AppCompatActivity() {
                     startActivity(Intent.createChooser(emailIntent, "Send message"))
                 } catch (e: ActivityNotFoundException) {
                     Toast.makeText(applicationContext,
-                        "You don't have an email client on your device",
+                        "You don't have an email client on your device...",
                         Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
+    }
+
+    private fun saveTheme(theme: Boolean) {
+        val sharedPreferences = getSharedPreferences("theme_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("selected_theme", theme)
+        editor.apply()
     }
 }

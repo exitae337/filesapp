@@ -76,10 +76,11 @@
     <string name="text_HintCircle">When your files will be ready to be downloaded   The circle below should change color from red to green!</string>
     <string name="upload_file">Click on the button below to select   and upload the files!</string>
     <string name="uploadText_attention">Don\'t forget to click the \'Ready\' button \n when the files will be ready to be downloaded!</string>
-    <string name="changeThemeText">Change application theme</string>
+    <string name="changeThemeText">Application theme</string>
     <string name="contactWithDveloperTitle">Contact with me</string>
     <string name="theme_contact">Theme:</string>
     <string name="hint_contact_theme">Write theme</string>
     <string name="mailText_contact">Text:</string>
     <string name="text_mailContact">Text</string>
+    <string name="settings_send">Send</string>
 </resources>

@@ -13,6 +13,11 @@ import com.example.filesapp.FileApi.FileViewModel
 import com.example.filesapp.databinding.ActivityUploadFileBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.InputStream
 
@@ -104,6 +109,7 @@ class UploadFileActivity : AppCompatActivity() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("Range")
     @Deprecated ("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -112,23 +118,25 @@ class UploadFileActivity : AppCompatActivity() {
             val uri: Uri = data.data!!
             val mimeType: String = contentResolver.getType(uri).toString()
 
-            val selectedFile = File(getRealPathFromUri(uri, mimeType))
-            val realPath = selectedFile.absolutePath
-            if (selectedFile.exists()) {
-                try {
-                    fileApiView.uploadFileWithProgress(selectedFile, key) { bytesWritten, contentLength ->
-                        val progress = ((bytesWritten.toDouble() / contentLength) * 100).toInt()
-                        runOnUiThread {
-                            binding.progressBarUpload.progress = progress
+            GlobalScope.launch {
+                val selectedFile = File(getRealPathFromUri(uri, mimeType))
+                val realPath = selectedFile.absolutePath
+                if (selectedFile.exists()) {
+                    try {
+                        fileApiView.uploadFileWithProgress(selectedFile, key) { bytesWritten, contentLength ->
+                            val progress = ((bytesWritten.toDouble() / contentLength) * 100).toInt()
+                            runOnUiThread {
+                                binding.progressBarUpload.progress = progress
+                            }
                         }
+                    } catch (e: Exception) {
+                        Toast.makeText(applicationContext, "Problems with upload!",
+                            Toast.LENGTH_SHORT).show()
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(applicationContext, "Problems with upload!",
+                } else {
+                    Toast.makeText(applicationContext, "No such file! $realPath",
                         Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(applicationContext, "No such file! $realPath",
-                    Toast.LENGTH_SHORT).show()
             }
         }
     }
