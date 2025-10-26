@@ -37,18 +37,6 @@ git clone https://github.com/exitae337/filesapp.git
 3. Configure server URL
 4. Run the app on emulator or device
 
-# Project Structure
-```text
-app/
-├── src/
-│   ├── main/
-│   │   ├── java/.../activities/    # Activities
-│   │   ├── java/.../adapters/      # Adapters
-│   │   ├── java/.../models/        # Data models
-│   │   └── res/                    # Resources
-├── build.gradle
-└── README.md
-```
 # Developer
 Chernyshev Maxim
 
