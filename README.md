@@ -38,7 +38,7 @@ git clone https://github.com/exitae337/filesapp.git
 4. Run the app on emulator or device
 
 # Project Structure
-
+```text
 app/
 ├── src/
 │   ├── main/
@@ -48,7 +48,7 @@ app/
 │   │   └── res/                    # Resources
 ├── build.gradle
 └── README.md
-
+```
 # Developer
 Chernyshev Maxim
 Student at [Your University]
