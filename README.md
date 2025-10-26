@@ -51,6 +51,7 @@ app/
 ```
 # Developer
 Chernyshev Maxim
-Student at [Your University]
+
 Contact: exitae337@gmail.com
+
 This is an educational project developed for university defense.
